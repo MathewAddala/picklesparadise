@@ -18,12 +18,9 @@ function initNavbar(): void {
   const menu = document.getElementById('navbar-menu')!;
   
   // Scroll-based navbar background
-  let lastScrollY = 0;
-  
   const handleNavScroll = () => {
     const scrolled = window.scrollY > 80;
     navbar.classList.toggle('navbar--scrolled', scrolled);
-    lastScrollY = window.scrollY;
   };
   
   window.addEventListener('scroll', handleNavScroll, { passive: true });
