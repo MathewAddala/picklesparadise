@@ -6,9 +6,9 @@
  * instant page display without any artificial loading blocks.
  */
 
-const TOTAL_FRAMES = 160;
+const TOTAL_FRAMES = 321;
 const FRAME_PATH_PREFIX = '/frames/frame_';
-const FRAME_EXT = '.jpg';
+const FRAME_EXT = '.webp';
 
 interface HeroState {
   canvas: HTMLCanvasElement;
