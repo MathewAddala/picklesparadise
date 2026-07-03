@@ -2,14 +2,13 @@
  * hero.ts — Scroll-scrubbed canvas frame animation engine
  *
  * Preloads sequential frames, draws them to a <canvas> based on
- * scroll position, and transitions to a fixed background layer
- * when the user scrolls past the hero section.
+ * scroll position. Performs background lazy loading to ensure
+ * instant page display without any artificial loading blocks.
  */
 
 const TOTAL_FRAMES = 160;
 const FRAME_PATH_PREFIX = '/frames/frame_';
 const FRAME_EXT = '.jpg';
-const BLOCKING_FRAMES = 30; // Load these before hiding loader
 
 interface HeroState {
   canvas: HTMLCanvasElement;
@@ -22,11 +21,7 @@ interface HeroState {
   stickyWrap: HTMLElement;
   overlay: HTMLElement;
   scrollIndicator: HTMLElement;
-  loaderBar: HTMLElement;
-  loaderText: HTMLElement;
-  loader: HTMLElement;
   isReady: boolean;
-  isCanvasFixed: boolean;
   rafId: number | null;
   reducedMotion: boolean;
 }
@@ -50,37 +45,47 @@ function loadFrame(index: number): Promise<HTMLImageElement> {
     img.onload = () => {
       state.frames[index] = img;
       state.loadedCount++;
-      updateLoadingProgress();
+      
+      // Paint first frame immediately on load for instant visual feedback
+      if (index === 0 && !state.isReady) {
+        state.isReady = true;
+        drawFrame(0);
+        startScrollListener();
+      }
       resolve(img);
     };
     img.onerror = () => {
       console.warn(`Failed to load frame ${index}`);
       state.loadedCount++;
-      updateLoadingProgress();
       reject(new Error(`Frame ${index} failed`));
     };
     img.src = frameUrl(index);
   });
 }
 
-/** Update loading progress UI */
-function updateLoadingProgress(): void {
-  const pct = Math.round((state.loadedCount / TOTAL_FRAMES) * 100);
-  state.loaderBar.style.width = `${pct}%`;
-  state.loaderText.textContent = `Loading experience... ${pct}%`;
-
-  // Once blocking frames are loaded, show first frame and allow interaction
-  if (state.loadedCount >= BLOCKING_FRAMES && !state.isReady) {
-    state.isReady = true;
-    state.loader.classList.add('loader--hidden');
-    drawFrame(0);
-    startScrollListener();
-  }
-}
-
-/** Draw a specific frame index onto the canvas */
+/** Draw a specific frame index onto the canvas (or the nearest loaded frame) */
 function drawFrame(index: number): void {
-  const frame = state.frames[index];
+  // Fallback: If target frame isn't loaded yet, find the nearest loaded frame
+  let frame = state.frames[index];
+  if (!frame) {
+    // Look backward first
+    for (let i = index - 1; i >= 0; i--) {
+      if (state.frames[i]) {
+        frame = state.frames[i];
+        break;
+      }
+    }
+    // If none found backward, look forward
+    if (!frame) {
+      for (let i = index + 1; i < TOTAL_FRAMES; i++) {
+        if (state.frames[i]) {
+          frame = state.frames[i];
+          break;
+        }
+      }
+    }
+  }
+
   if (!frame || !state.ctx) return;
 
   // Reset transform to 1:1 to draw directly onto the raw pixel buffer of the canvas
@@ -200,11 +205,7 @@ export function initHero(): void {
     stickyWrap: document.querySelector('.hero__sticky')!,
     overlay: document.getElementById('hero-overlay')!,
     scrollIndicator: document.getElementById('scroll-indicator')!,
-    loaderBar: document.getElementById('loader-bar')!,
-    loaderText: document.getElementById('loader-text')!,
-    loader: document.getElementById('loader')!,
     isReady: false,
-    isCanvasFixed: false,
     rafId: null,
     reducedMotion,
   };
@@ -213,13 +214,12 @@ export function initHero(): void {
   resizeCanvas();
   
   if (reducedMotion) {
-    // For reduced motion: load only the middle frame and show it as static
     handleReducedMotion();
     return;
   }
   
-  // Load blocking frames first (sequential for fast first paint)
-  loadFramesChunked();
+  // Boot and start streaming frames in the background immediately
+  loadFramesInBackground();
 }
 
 /** Handle reduced motion: show static frame */
@@ -231,28 +231,28 @@ async function handleReducedMotion(): Promise<void> {
   } catch {
     // Silently fail
   }
-  state.loader.classList.add('loader--hidden');
-  state.loadedCount = TOTAL_FRAMES;
-  updateLoadingProgress();
+  state.isReady = true;
 }
 
-/** Load frames in chunks: blocking set first, then rest in background */
-async function loadFramesChunked(): Promise<void> {
-  // Phase 1: Load first BLOCKING_FRAMES frames (these are needed immediately)
-  const blockingPromises: Promise<HTMLImageElement>[] = [];
-  for (let i = 0; i < BLOCKING_FRAMES; i++) {
-    blockingPromises.push(loadFrame(i).catch(() => new Image()));
+/** Load all frames asynchronously in the background. Index 0 is loaded first for instant paint */
+async function loadFramesInBackground(): Promise<void> {
+  // 1. Load the first frame immediately to draw the page instantly
+  try {
+    await loadFrame(0);
+  } catch {
+    // fallback
   }
-  await Promise.all(blockingPromises);
-  
-  // Phase 2: Load remaining frames in background batches
-  const BATCH_SIZE = 10;
-  for (let start = BLOCKING_FRAMES; start < TOTAL_FRAMES; start += BATCH_SIZE) {
+
+  // 2. Load the rest of the frames in small batches in the background
+  const BATCH_SIZE = 8;
+  for (let start = 1; start < TOTAL_FRAMES; start += BATCH_SIZE) {
     const end = Math.min(start + BATCH_SIZE, TOTAL_FRAMES);
     const batch: Promise<HTMLImageElement>[] = [];
     for (let i = start; i < end; i++) {
       batch.push(loadFrame(i).catch(() => new Image()));
     }
+    // Allow thread yielding between batches for smooth UI thread
     await Promise.all(batch);
+    await new Promise(resolve => setTimeout(resolve, 30));
   }
 }
