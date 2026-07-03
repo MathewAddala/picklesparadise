@@ -1003,80 +1003,117 @@ button {
    MOBILE RESPONSIVENESS AND ALIGNMENT OVERRIDES (max-width: 768px)
    ============================================================ */
 @media (max-width: 768px) {
-  /* Navbar */
-  .navbar__inner {
+  /* Navbar — fixed header bar with solid background to prevent top cutoff */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 56px;
+    background: rgba(12, 10, 8, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
     padding: 0 1rem;
+    z-index: 100;
+  }
+  .navbar__inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    max-width: 100%;
+  }
+  .navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
   .navbar__logo-img {
-    height: 32px;
+    height: 28px;
+    width: auto;
   }
-  
-  /* Scroll Wrapper & Sticky Canvas on Mobile */
+  .navbar__menu {
+    top: 56px;
+    background: rgba(12, 10, 8, 0.98);
+  }
+  .navbar__link {
+    padding: 0.65rem 1rem;
+  }
+
+  /* Full-bleed background scrolling for all 16 seconds of frames */
   .scroll-wrapper {
-    height: 300vh; /* slightly shorter scroll runways for faster mobile scroll */
+    height: 400vh; /* full scroll runway for the frame sequence */
   }
   .hero__sticky {
-    height: 42vh; /* Canvas takes top ~42% of mobile screen to show full aspect ratio */
+    height: 100vh;
     position: sticky;
-    top: 56px; /* stack below navbar */
+    top: 0;
+    z-index: 1;
   }
   .hero__canvas {
-    object-fit: contain; /* fully fit the 16:9 frame width without any cropping */
-    background: #000;
+    object-fit: cover; /* full cover view with no gaps */
   }
-  
-  /* Scroll Content on Mobile - let it flow naturally below the animation */
   .scroll-content {
-    margin-top: 0;
+    margin-top: -100vh; /* pull overlays back over canvas background */
   }
-  
-  /* Hero Overlay text fits inside the first viewport */
   .hero-overlay {
-    height: 58vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .hero__overlay {
-    position: relative;
-    inset: auto;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 1.5rem 1rem;
   }
   .hero__title {
-    font-size: 2.6rem;
+    font-size: 3.2rem;
   }
   .hero__tagline {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
   
   /* Catalog Layout on Mobile */
   .catalog {
-    padding: 2rem 1rem;
-    background: var(--color-bg-dark); /* solid background to prevent overlapping issues */
+    padding: 3rem 1rem;
+    /* Soft semi-transparent backdrop so frames show through clearly */
+    background: linear-gradient(
+      180deg,
+      rgba(12, 10, 8, 0.4) 0%,
+      rgba(12, 10, 8, 0.25) 50%,
+      rgba(12, 10, 8, 0.45) 100%
+    );
   }
   .catalog__title {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
   }
   .catalog__description {
-    font-size: 0.9rem;
-    padding: 0 0.25rem;
+    font-size: 0.92rem;
+    padding: 0;
   }
   .catalog__grid {
-    grid-template-columns: 1fr; /* single column listings */
-    gap: 1.25rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     padding: 0;
   }
   
   /* Product Card on Mobile */
   .catalog__card-body {
-    padding: 1.15rem;
+    padding: 1.25rem;
   }
   .catalog__card-name {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
   .catalog__card-desc {
-    font-size: 0.85rem;
+    font-size: 0.86rem;
   }
   .catalog__card-price {
     font-size: 1.05rem;
@@ -1084,19 +1121,19 @@ button {
   
   /* Outro video height adjusted on mobile */
   .outro {
-    height: 50vh;
+    height: 60vh;
   }
   
   /* Contact section layout stacking */
   .contact {
-    padding: 2.5rem 1rem;
+    padding: 3rem 1rem;
   }
   .contact__inner {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
   .contact__form {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
   .contact__map iframe {
     height: 180px;
@@ -1104,7 +1141,7 @@ button {
   
   /* Footer */
   .footer {
-    padding: 2rem 1rem 1.5rem;
+    padding: 2.5rem 1rem 1.5rem;
   }
 }
 
