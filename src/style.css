@@ -195,19 +195,25 @@ button {
   .navbar__toggle { display: flex; }
   .navbar__menu {
     position: fixed;
-    top: 64px;
+    top: 56px;
     left: 0;
     width: 100%;
     flex-direction: column;
-    background: rgba(12,10,8,0.95);
+    background: rgba(12, 10, 8, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 1.5rem 0;
     gap: 0.25rem;
-    transform: translateY(-120%);
-    transition: transform var(--transition-med);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-med), transform var(--transition-med), visibility var(--transition-med);
   }
   .navbar__menu.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
   }
   .navbar__link {
