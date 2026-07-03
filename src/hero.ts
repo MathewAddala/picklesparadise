@@ -99,17 +99,18 @@ function drawFrame(index: number): void {
   const isMobile = window.innerWidth <= 768;
   
   if (isMobile) {
-    // Contain-fit for mobile viewport to display the entire 16:9 picture (no crop)
+    // Cover-fit for mobile with focal shift to the right to keep the jar in view (continuous look)
     if (frameAspect > canvasAspect) {
+      drawHeight = state.canvas.height;
+      drawWidth = drawHeight * frameAspect;
+      // Shift crop to the right (0.65 multiplier brings the right-side jar into viewport)
+      drawX = (state.canvas.width - drawWidth) * 0.65;
+      drawY = 0;
+    } else {
       drawWidth = state.canvas.width;
       drawHeight = drawWidth / frameAspect;
       drawX = 0;
       drawY = (state.canvas.height - drawHeight) / 2;
-    } else {
-      drawHeight = state.canvas.height;
-      drawWidth = drawHeight * frameAspect;
-      drawX = (state.canvas.width - drawWidth) / 2;
-      drawY = 0;
     }
   } else {
     // Cover-fit for desktop viewport (zero gaps)

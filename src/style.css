@@ -1054,7 +1054,7 @@ button {
     z-index: 1;
   }
   .hero__canvas {
-    object-fit: contain; /* contain fit on mobile so zero width gets cropped */
+    object-fit: cover; /* cover fit for continuous immersive backdrop */
   }
   .scroll-content {
     margin-top: -100vh; /* pull overlays back over canvas background */
@@ -1154,7 +1154,14 @@ button {
   
   /* Outro video height adjusted on mobile */
   .outro {
-    height: 60vh;
+    height: 48vh; /* condensed height on mobile */
+  }
+  .outro__title {
+    font-size: 1.8rem;
+  }
+  .outro__subtitle {
+    font-size: 0.82rem;
+    margin-top: 0.5rem;
   }
   
   /* Contact section layout stacking */
