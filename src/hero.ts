@@ -92,24 +92,38 @@ function drawFrame(index: number): void {
   state.ctx.setTransform(1, 0, 0, 1, 0, 0);
   state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height);
   
-  // Cover-fit the frame into the canvas (so it fills the screen with zero gaps)
   const canvasAspect = state.canvas.width / state.canvas.height;
   const frameAspect = frame.naturalWidth / frame.naturalHeight;
   
   let drawWidth: number, drawHeight: number, drawX: number, drawY: number;
+  const isMobile = window.innerWidth <= 768;
   
-  if (frameAspect > canvasAspect) {
-    // Canvas is taller than 16:9 (e.g. mobile portrait or narrow window)
-    drawHeight = state.canvas.height;
-    drawWidth = drawHeight * frameAspect;
-    drawX = (state.canvas.width - drawWidth) / 2;
-    drawY = 0;
+  if (isMobile) {
+    // Contain-fit for mobile viewport to display the entire 16:9 picture (no crop)
+    if (frameAspect > canvasAspect) {
+      drawWidth = state.canvas.width;
+      drawHeight = drawWidth / frameAspect;
+      drawX = 0;
+      drawY = (state.canvas.height - drawHeight) / 2;
+    } else {
+      drawHeight = state.canvas.height;
+      drawWidth = drawHeight * frameAspect;
+      drawX = (state.canvas.width - drawWidth) / 2;
+      drawY = 0;
+    }
   } else {
-    // Canvas is wider than 16:9 (e.g. wide screen desktop)
-    drawWidth = state.canvas.width;
-    drawHeight = drawWidth / frameAspect;
-    drawX = 0;
-    drawY = (state.canvas.height - drawHeight) / 2;
+    // Cover-fit for desktop viewport (zero gaps)
+    if (frameAspect > canvasAspect) {
+      drawHeight = state.canvas.height;
+      drawWidth = drawHeight * frameAspect;
+      drawX = (state.canvas.width - drawWidth) / 2;
+      drawY = 0;
+    } else {
+      drawWidth = state.canvas.width;
+      drawHeight = drawWidth / frameAspect;
+      drawX = 0;
+      drawY = (state.canvas.height - drawHeight) / 2;
+    }
   }
   
   state.ctx.drawImage(frame, drawX, drawY, drawWidth, drawHeight);
