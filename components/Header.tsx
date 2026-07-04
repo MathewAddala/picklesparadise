@@ -60,13 +60,25 @@ export default function Header() {
     { id: 'contact', label: 'Contact' }
   ];
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // On mobile: always solid cream. On desktop: transparent at top, solid when scrolled.
+  const navBg = isMobile
+    ? 'bg-[#FAF4EC] border border-[#e8d9c5] shadow-[0_4px_16px_rgba(62,43,31,0.10)]'
+    : isScrolled
+      ? 'bg-[#FAF4EC]/90 backdrop-blur-[18px] border border-[#FAF4EC]/30 shadow-[0_8px_32px_rgba(62,43,31,0.12)]'
+      : 'bg-white/[0.08] backdrop-blur-[18px] border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.06)]';
+
   return (
     <header
-      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[1280px] z-[100] transition-all duration-300 rounded-[18px] h-16 md:h-20 ${
-        isScrolled
-          ? 'bg-[#FAF4EC]/90 backdrop-blur-[18px] border border-[#FAF4EC]/30 shadow-[0_8px_32px_rgba(62,43,31,0.12)]'
-          : 'bg-[#FAF4EC]/90 backdrop-blur-[18px] border border-[#e8d9c5]/60 shadow-[0_4px_20px_rgba(62,43,31,0.08)] md:bg-white/[0.08] md:border-white/15 md:shadow-[0_8px_32px_rgba(0,0,0,0.06)]'
-      }`}
+      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[1280px] z-[100] transition-all duration-300 rounded-[18px] h-16 md:h-20 ${navBg}`}
     >
       <div className="w-full h-full max-w-[1280px] mx-auto px-6 md:px-10 flex items-center justify-between relative">
         {/* LOGO (Left) */}
@@ -154,7 +166,8 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 26, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:max-w-md h-full bg-[#FAF4EC] backdrop-blur-md z-[160] p-6 flex flex-col justify-between md:hidden border-l border-beige/40 shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-full sm:max-w-md h-full z-[160] p-6 flex flex-col justify-between md:hidden border-l border-[#e8d9c5] shadow-2xl"
+              style={{ backgroundColor: '#FAF4EC' }}
             >
               <div className="space-y-8">
                 {/* Header with logo and close button */}
