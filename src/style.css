@@ -635,6 +635,7 @@ button {
   border: none;
   cursor: pointer;
   outline: none;
+  pointer-events: auto;
 }
 .catalog__card-cta:hover {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
@@ -1835,6 +1836,13 @@ button {
   /* Action wrappers mobile toggle */
   .catalog__action-wrapper--mobile {
     display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    pointer-events: none;
+    z-index: 10;
   }
   .catalog__action-wrapper--desktop {
     display: none !important;
@@ -1876,6 +1884,7 @@ button {
   box-shadow: 0 4px 12px rgba(255, 107, 0, 0.18);
   overflow: hidden;
   box-sizing: border-box;
+  pointer-events: auto;
 }
 
 /* Mobile Swiggy-style action wrappers overlaying the image */
