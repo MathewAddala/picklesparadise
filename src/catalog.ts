@@ -36,6 +36,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹300',
     halaal: false,
+    image: '/chickenboneless.jpeg',
   },
   {
     id: 'chicken-bone',
@@ -45,6 +46,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹280',
     halaal: true,
+    image: '/chickenbonepickle.jpeg',
   },
   {
     id: 'naatu-kodi',
@@ -54,6 +56,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹380',
     halaal: false,
+    image: '/natukodipickle.jpeg',
   },
   {
     id: 'mutton',
@@ -63,6 +66,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹450',
     halaal: true,
+    image: '/muttonpickleitem.jpeg',
   },
   {
     id: 'fish',
@@ -72,6 +76,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹320',
     halaal: false,
+    image: '/fishpickleitem.jpeg',
   },
   {
     id: 'kormeenu',
@@ -81,6 +86,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹340',
     halaal: false,
+    image: '/kormeenupickle.jpeg',
   },
 ];
 
