@@ -32,10 +32,10 @@ export default function ProductCard({ product, cart, addToCart, updateQuantity }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group flex flex-row-reverse justify-between items-start py-6 border-b border-[#3E2B1F]/10 md:flex-col md:border-none md:rounded-2xl md:overflow-hidden md:bg-white/85 md:backdrop-blur-md md:shadow-sm md:hover:shadow-xl md:p-0 md:h-full md:transition-all md:duration-300"
+      className="group flex flex-row-reverse justify-between items-center p-4 bg-white/85 backdrop-blur-md rounded-2xl border border-beige/35 shadow-sm w-full md:flex-col md:p-0 md:overflow-hidden md:h-full md:max-w-[300px] md:mx-auto md:transition-all md:duration-300 md:hover:shadow-xl"
     >
       {/* Product Image Section */}
-      <div className="relative w-[100px] h-[100px] shrink-0 ml-4 md:w-full md:h-auto md:aspect-square md:ml-0 md:overflow-hidden md:bg-cream/35">
+      <div className="relative w-[95px] h-[95px] shrink-0 ml-4 md:w-full md:h-auto md:aspect-square md:ml-0 md:overflow-hidden md:bg-cream/35">
         <Image
           src={product.image}
           alt={product.name}
@@ -54,7 +54,7 @@ export default function ProductCard({ product, cart, addToCart, updateQuantity }
         </div>
 
         {/* Mobile Swiggy-style overlapping action wrapper */}
-        <div className="absolute bottom-[-12px] left-1/2 -translate-x-1/2 md:hidden z-10">
+        <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 md:hidden z-10">
           {quantity === 0 ? (
             <button
               onClick={() => addToCart(product, weight)}
@@ -83,12 +83,21 @@ export default function ProductCard({ product, cart, addToCart, updateQuantity }
       </div>
 
       {/* Product Details Section */}
-      <div className="flex-1 text-left flex flex-col md:p-5 md:flex-grow md:space-y-3">
+      <div className="flex-1 text-left flex flex-col md:p-5 md:flex-grow md:space-y-2">
         <div className="space-y-1">
-          <h3 className="font-serif text-base md:text-lg font-bold text-text-dark group-hover:text-terracotta transition-colors">
+          <h3 className="font-serif text-base md:text-lg font-bold text-text-dark group-hover:text-terracotta transition-colors leading-tight">
             {product.name}
           </h3>
-          <p className="text-xs text-text-light line-clamp-2 md:min-h-[2.5rem]">
+          <p 
+            className="text-xs text-text-light md:min-h-[2.5rem]"
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+          >
             {product.description}
           </p>
         </div>
