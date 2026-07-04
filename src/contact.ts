@@ -119,16 +119,4 @@ export function initContact(): void {
   
   form.addEventListener('submit', handleSubmit);
   setupContactReveal();
-
-  // Make the anchor Order via WhatsApp button trigger form submission (with validation)
-  const whatsappBtn = form.querySelector('.contact__whatsapp-btn');
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      // HTML5 Form validation check
-      if (form.reportValidity()) {
-        form.requestSubmit();
-      }
-    });
-  }
 }
