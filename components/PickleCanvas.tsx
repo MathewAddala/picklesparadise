@@ -22,7 +22,6 @@ export default function PickleCanvas() {
   const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
 
   const [isReady, setIsReady] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(0);
   const [loadError, setLoadError] = useState(false);
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
 
@@ -93,10 +92,6 @@ export default function PickleCanvas() {
             loadedImages[index - 1] = img;
           } catch {
             loadedImages[index - 1] = null; // Mark slot as failed
-          } finally {
-            if (active) {
-              setLoadedCount((c) => c + 1);
-            }
           }
         }
       };
@@ -250,25 +245,6 @@ export default function PickleCanvas() {
 
   return (
     <>
-      {/* A. Global Preloader Overlay */}
-      {!isReady && !loadError && (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FAF4EC] text-[#3E2B1F]">
-          <div className="flex flex-col items-center space-y-4 max-w-xs text-center px-4">
-            {/* Spinning pepper loader */}
-            <div className="w-14 h-14 border-4 border-dashed border-[#D36B53] rounded-full animate-spin"></div>
-            <h2 className="font-serif text-2xl font-extrabold tracking-wide text-[#D36B53]">🌶️ Pickles Paradise</h2>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#6E5A4B] animate-pulse">Preloading Experience...</p>
-            <div className="w-48 bg-[#D36B53]/10 h-1.5 rounded-full overflow-hidden">
-              <div 
-                className="bg-[#D36B53] h-full rounded-full transition-all duration-300"
-                style={{ width: `${Math.round((loadedCount / FRAME_COUNT) * 100)}%` }}
-              ></div>
-            </div>
-            <p className="text-xs font-bold text-[#D36B53]">{Math.round((loadedCount / FRAME_COUNT) * 100)}%</p>
-          </div>
-        </div>
-      )}
-
       {/* B. Center Fallback View (if no frame renders) */}
       {loadError && (
         <div className="fixed inset-0 z-0 flex items-center justify-center bg-[#FAF4EC] px-4 text-center">

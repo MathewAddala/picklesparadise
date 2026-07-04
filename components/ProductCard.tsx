@@ -32,12 +32,12 @@ export default function ProductCard({ product, cart, addToCart, updateQuantity }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group flex flex-row-reverse justify-between items-center p-4 bg-white/85 backdrop-blur-md rounded-2xl border border-beige/35 shadow-sm w-full md:flex-col md:p-0 md:overflow-hidden md:max-w-[220px] md:mx-auto md:transition-all md:duration-300 md:hover:shadow-xl"
+      className="group flex flex-row-reverse justify-between items-center p-4 bg-white/85 backdrop-blur-md rounded-2xl border border-beige/35 shadow-sm w-full md:flex-col md:p-0 md:overflow-hidden md:max-w-[250px] md:mx-auto md:transition-all md:duration-300 md:hover:shadow-xl"
     >
       {/* Product Image Section */}
       <div 
         className="relative w-[95px] h-[95px] shrink-0 ml-4 md:w-full md:h-auto md:ml-0 md:overflow-hidden md:bg-cream/35"
-        style={{ aspectRatio: '1 / 1' }}
+        style={{ aspectRatio: '4 / 3' }}
       >
         <Image
           src={product.image}

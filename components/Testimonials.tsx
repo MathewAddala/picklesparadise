@@ -129,7 +129,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="min-w-[210px] max-w-[210px] w-[210px] shrink-0 snap-center bg-white/85 backdrop-blur-md p-4 rounded-xl shadow-sm border border-beige/35 flex flex-col justify-between relative group hover:shadow-md transition-shadow duration-300"
+              className="min-w-[280px] max-w-[280px] w-[280px] shrink-0 snap-center bg-white/85 backdrop-blur-md p-4 rounded-xl shadow-sm border border-beige/35 flex flex-col justify-between relative group hover:shadow-md transition-shadow duration-300"
             >
               {/* Quote Mark Decoration */}
               <Quote className="absolute top-3.5 right-3.5 w-5 h-5 text-beige/40 -z-0" />
