@@ -10,6 +10,7 @@ import { initHero } from './hero';
 import { initCatalog } from './catalog';
 import { initOutro } from './outro';
 import { initContact } from './contact';
+import { initReviews } from './reviews';
 
 /** Navbar scroll styling + mobile toggle */
 function initNavbar(): void {
@@ -64,6 +65,7 @@ function init(): void {
   initHero();
   initCatalog();
   initOutro();
+  initReviews();
   initContact();
 }
 
