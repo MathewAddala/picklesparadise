@@ -62,11 +62,11 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[1280px] z-[100] transition-all duration-300 ${
+      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[1280px] z-[100] transition-all duration-300 rounded-[18px] h-16 md:h-20 ${
         isScrolled
-          ? 'bg-[#FAF4EC]/75 backdrop-blur-[18px] border border-[#FAF4EC]/20 shadow-[0_8px_32px_rgba(62,43,31,0.08)]'
-          : 'bg-white/[0.08] backdrop-blur-[18px] border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.06)]'
-      } rounded-[18px] h-20`}
+          ? 'bg-[#FAF4EC]/90 backdrop-blur-[18px] border border-[#FAF4EC]/30 shadow-[0_8px_32px_rgba(62,43,31,0.12)]'
+          : 'bg-[#FAF4EC]/90 backdrop-blur-[18px] border border-[#e8d9c5]/60 shadow-[0_4px_20px_rgba(62,43,31,0.08)] md:bg-white/[0.08] md:border-white/15 md:shadow-[0_8px_32px_rgba(0,0,0,0.06)]'
+      }`}
     >
       <div className="w-full h-full max-w-[1280px] mx-auto px-6 md:px-10 flex items-center justify-between relative">
         {/* LOGO (Left) */}
@@ -76,7 +76,7 @@ export default function Header() {
           className="flex items-center focus:outline-none relative z-10"
         >
           {/* Circular logo container */}
-          <div className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] lg:w-[90px] lg:h-[90px] rounded-full bg-white p-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] flex items-center justify-center transition-transform duration-[350ms] hover:scale-[1.05] relative -bottom-[2px] lg:-bottom-[4px]">
+          <div className="w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] lg:w-[90px] lg:h-[90px] rounded-full bg-white p-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] flex items-center justify-center transition-transform duration-[350ms] hover:scale-[1.05] relative -bottom-[2px] lg:-bottom-[4px]">
             <Image
               src="/logo.png"
               alt="Pickles Paradise Logo"
@@ -128,10 +128,10 @@ export default function Header() {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg text-text-dark hover:bg-beige/40 transition-colors focus:outline-none"
+            className="p-2.5 rounded-xl text-text-dark bg-beige/50 hover:bg-beige/80 transition-colors focus:outline-none shadow-sm"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
