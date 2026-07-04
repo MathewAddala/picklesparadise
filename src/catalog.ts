@@ -126,11 +126,11 @@ function createCard(product: Product, index: number): HTMLElement {
       <a href="#contact" class="catalog__card-cta catalog__card-cta--mobile" data-product="${product.id}">ADD</a>
     </div>
     <div class="catalog__card-body">
-      <div class="catalog__card-tags">
+      ${halaalTag ? `<div class="catalog__card-tags">${halaalTag}</div>` : ''}
+      <h3 class="catalog__card-name">
         <span class="nonveg-indicator" title="Non-Veg"></span>
-        ${halaalTag}
-      </div>
-      <h3 class="catalog__card-name">${product.name}</h3>
+        ${product.name}
+      </h3>
       <p class="catalog__card-desc">${product.description}</p>
       <div class="catalog__card-footer">
         <div class="catalog__card-price-group">

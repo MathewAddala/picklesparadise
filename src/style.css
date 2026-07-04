@@ -456,7 +456,7 @@ button {
 /* Grid */
 .catalog__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -464,9 +464,9 @@ button {
 
 /* Product Card */
 .catalog__card {
-  background: var(--color-bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(18, 14, 11, 0.88); /* high-contrast background to pop text */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-glass-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -474,9 +474,9 @@ button {
   cursor: default;
 }
 .catalog__card:hover {
-  background: rgba(12, 10, 8, 0.68); /* darkens to greyish-dark on pointer hover */
+  background: rgba(12, 10, 8, 0.95);
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--color-border-glow);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--color-border-glow);
   border-color: var(--color-border-glow);
 }
 
@@ -490,7 +490,7 @@ button {
 .catalog__card-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/10; /* compact landscape aspect ratio on desktop */
   background: linear-gradient(135deg, rgba(218,165,32,0.08), rgba(180,80,40,0.08));
   display: flex;
   align-items: center;
@@ -535,7 +535,7 @@ button {
 }
 
 .catalog__card-body {
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 1.25rem 1.25rem 1.5rem;
 }
 .catalog__card-name {
   font-family: var(--font-display);
@@ -545,10 +545,15 @@ button {
   margin-bottom: 0.4rem;
 }
 .catalog__card-desc {
-  font-size: 0.88rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* clamp descriptions to 3 lines on desktop */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.86rem;
   color: var(--color-text-muted);
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  min-height: 4.5em; /* force uniform alignment of price/footer across cards */
 }
 .catalog__card-footer {
   display: flex;
@@ -583,19 +588,22 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 13px;
-  height: 13px;
-  border: 1.2px solid #bd362f;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #e43b2f;
   padding: 2px;
   box-sizing: border-box;
+  vertical-align: middle;
+  margin-right: 0.35rem;
+  flex-shrink: 0;
 }
 .nonveg-indicator::after {
   content: '';
   display: block;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #bd362f;
+  background: #e43b2f;
 }
 .halaal-tag {
   font-size: 0.65rem;
@@ -1059,6 +1067,14 @@ button {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
+/* Medium Screen Responsiveness (Tablets / Laptops) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .catalog__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
 /* ============================================================
    MOBILE RESPONSIVENESS AND ALIGNMENT OVERRIDES (max-width: 768px)
    ============================================================ */
@@ -1187,14 +1203,14 @@ button {
     background: transparent;
     transform: none;
     box-shadow: none;
-    border-color: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
   
   .catalog__card-image {
     width: 102px;
     height: 102px;
     flex-shrink: 0;
-    margin-left: 1rem;
+    margin-left: 1.2rem;
     position: relative;
     border-radius: 12px;
     overflow: visible;
@@ -1212,6 +1228,7 @@ button {
   .catalog__card-body {
     flex: 1;
     padding: 0;
+    padding-right: 0.5rem;
     text-align: left;
   }
   
@@ -1265,26 +1282,30 @@ button {
   .catalog__card-cta--mobile {
     display: block;
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 76px;
     text-align: center;
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     font-weight: 700;
-    color: var(--color-primary-light);
-    background: #14110e;
-    border: 1px solid var(--color-primary);
+    color: #ff6b00; /* vibrant foodie orange-red */
+    background: #ffffff; /* crisp white */
+    border: 1px solid rgba(255, 107, 0, 0.5);
     border-radius: 6px;
-    padding: 0.28rem 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    padding: 0.35rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     letter-spacing: 0.05em;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease-in-out;
   }
   .catalog__card-cta--mobile:active,
-  .catalog__card-cta--mobile:hover {
-    background: var(--color-primary);
-    color: var(--color-bg-dark);
+  .catalog__card-cta--mobile:hover,
+  .catalog__card-cta--mobile:focus {
+    transform: translateX(-50%) scale(1.04) !important; /* preserves centering translation! */
+    background: #fffbf7 !important;
+    border-color: #ff6b00 !important;
+    color: #ff6b00 !important;
+    box-shadow: 0 4px 14px rgba(255, 107, 0, 0.25) !important;
   }
   
   /* Hide desktop badge layers on mobile row style */
