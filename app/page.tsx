@@ -107,13 +107,13 @@ export default function Home() {
             initial={{ opacity: 0, y: 100, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.95 }}
-            className="fixed bottom-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-full md:max-w-md bg-[#D36B53] text-white rounded-2xl shadow-xl px-4 py-3 flex items-center justify-between z-[90] border border-white/10"
+            className="fixed bottom-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-full md:max-w-xs bg-[#D36B53] text-white rounded-xl shadow-lg px-3.5 py-2 flex items-center justify-between z-[90] border border-white/10"
           >
             <div className="flex flex-col text-left min-w-0">
-              <span className="text-xs opacity-90 font-medium tracking-wide truncate">
+              <span className="text-[10px] opacity-90 font-medium tracking-wide truncate">
                 {cartItemCount} {cartItemCount === 1 ? 'item' : 'items'} added
               </span>
-              <span className="text-base font-bold">
+              <span className="text-sm font-bold leading-tight">
                 ₹{cartTotal}
               </span>
             </div>
@@ -130,10 +130,10 @@ export default function Home() {
                   });
                 }
               }}
-              className="bg-white text-[#D36B53] font-bold text-xs sm:text-sm px-3 sm:px-5 py-2.5 rounded-xl transition-all active:scale-95 flex items-center gap-1 cursor-pointer shadow-md hover:bg-white/95 shrink-0 ml-3"
+              className="bg-white text-[#D36B53] font-bold text-xs px-3 py-1.5 rounded-lg transition-all active:scale-95 flex items-center gap-1 cursor-pointer shadow-sm hover:bg-white/95 shrink-0 ml-2"
             >
-              <span>View Cart<span className="hidden sm:inline"> & Order</span></span>
-              <span className="text-base">→</span>
+              <span>View Cart</span>
+              <span className="text-xs">→</span>
             </button>
           </motion.div>
         )}

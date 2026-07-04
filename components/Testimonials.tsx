@@ -87,20 +87,10 @@ export default function Testimonials() {
       }
     };
 
-    const checkViewportAndPlay = () => {
-      if (window.innerWidth < 768) {
-        startAutoPlay();
-      } else {
-        stopAutoPlay();
-      }
-    };
-
-    checkViewportAndPlay();
-    window.addEventListener('resize', checkViewportAndPlay);
+    startAutoPlay();
 
     return () => {
       stopAutoPlay();
-      window.removeEventListener('resize', checkViewportAndPlay);
     };
   }, [isInteracting]);
 
@@ -130,7 +120,7 @@ export default function Testimonials() {
           onTouchEnd={() => {
             setTimeout(() => setIsInteracting(false), 1500);
           }}
-          className="flex overflow-x-auto gap-4 pb-4 scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-x-visible md:pb-0"
+          className="flex overflow-x-auto gap-6 pb-6 scrollbar-none w-full snap-x snap-mandatory scroll-smooth"
         >
           {REVIEWS.map((review, index) => (
             <motion.div
@@ -139,7 +129,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="min-w-[260px] max-w-[260px] md:max-w-none md:w-auto md:min-w-0 snap-center bg-white/85 backdrop-blur-md p-5 rounded-xl shadow-sm border border-beige/35 flex flex-col justify-between relative group hover:shadow-md transition-shadow duration-300"
+              className="min-w-[260px] max-w-[260px] w-[260px] shrink-0 snap-center bg-white/85 backdrop-blur-md p-5 rounded-xl shadow-sm border border-beige/35 flex flex-col justify-between relative group hover:shadow-md transition-shadow duration-300"
             >
               {/* Quote Mark Decoration */}
               <Quote className="absolute top-4 right-4 w-6 h-6 text-beige/40 -z-0" />

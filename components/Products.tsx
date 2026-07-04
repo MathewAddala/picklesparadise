@@ -59,7 +59,7 @@ export default function Products({ cart, addToCart, updateQuantity }: ProductsPr
         {/* Products Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
+          className="flex flex-col gap-6 md:flex-row md:flex-wrap md:justify-center md:items-stretch md:gap-8 w-full"
         >
           {PRODUCTS.map((product) => (
             <ProductCard
