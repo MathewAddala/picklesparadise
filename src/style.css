@@ -748,15 +748,15 @@ button {
 .contact {
   position: relative;
   z-index: 3;
-  padding: var(--section-pad-y) var(--section-pad-x);
+  padding: var(--section-pad-y) var(--section-pad-x) calc(var(--section-pad-y) + 3rem); /* extra bottom spacing to prevent cutoff */
   background: var(--color-bg-section);
 }
 .contact__inner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
   align-items: start;
 }
 .contact__label {
@@ -785,35 +785,37 @@ button {
 .contact__details {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 .contact__detail {
   display: flex;
-  gap: 1rem;
-  align-items: flex-start;
+  gap: 1.25rem;
+  align-items: center;
 }
 .contact__detail-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.6rem;
+  height: 2.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.05);
-  border-radius: var(--radius-sm);
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  border-radius: 50%; /* cute circular icon badges */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 .contact__detail strong {
   display: block;
   font-family: var(--font-accent);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: 0.15rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
+  margin-bottom: 0.2rem;
 }
 .contact__detail p {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   line-height: 1.5;
 }
@@ -823,9 +825,10 @@ button {
 
 /* Map */
 .contact__map {
-  border-radius: var(--radius-md);
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Form */
@@ -833,14 +836,18 @@ button {
   position: relative;
 }
 .contact__form {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
+  background: rgba(18, 14, 11, 0.88); /* matching dark card background */
+  border: 1px solid var(--color-glass-border);
+  border-radius: 16px;
+  padding: 2.2rem;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .contact__form-title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--color-text);
   margin-bottom: 1.5rem;
 }
@@ -850,83 +857,93 @@ button {
 .contact__field label {
   display: block;
   font-family: var(--font-accent);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.03em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary-light); /* warm gold labels */
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .contact__field input,
 .contact__field select,
 .contact__field textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: rgba(255,255,255,0.04);
+  padding: 0.8rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px; /* friendly rounded borders */
+  background: rgba(255, 255, 255, 0.05);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 0.95rem;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: all var(--transition-fast) ease-in-out;
   outline: none;
 }
 .contact__field input:focus,
 .contact__field select:focus,
 .contact__field textarea:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(218,165,32,0.15);
+  border-color: #ff6b00;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
 }
 .contact__field select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23999' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23ffa500' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
 }
 .contact__field select option {
-  background: var(--color-bg-section);
+  background: #181411;
   color: var(--color-text);
 }
 .contact__field textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 90px;
 }
 
 .contact__submit {
   width: 100%;
-  padding: 0.85rem;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
-  color: var(--color-bg-dark);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  transition: all var(--transition-fast);
+  padding: 0.9rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff6b00, #ff8c00); /* foodie brand orange */
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
 }
 .contact__submit:hover {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  box-shadow: 0 6px 24px rgba(218,165,32,0.3);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #ff8c00, #ffa500);
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35);
+  transform: translateY(-2px);
 }
 
 .contact__whatsapp-btn {
   display: block;
   text-align: center;
   width: 100%;
-  padding: 0.85rem;
-  border-radius: var(--radius-sm);
-  background: var(--color-whatsapp);
+  padding: 0.9rem;
+  border-radius: 8px;
+  background: #25D366; /* WhatsApp brand green */
   color: #fff !important;
   font-family: var(--font-accent);
-  font-size: 1rem;
-  font-weight: 600;
-  margin-top: 0.75rem;
-  transition: all var(--transition-fast);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 0.8rem;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.15);
 }
 .contact__whatsapp-btn:hover {
-  background: #1db954;
-  box-shadow: 0 6px 24px rgba(37,211,102,0.3);
-  transform: translateY(-1px);
+  background: #20ba5a;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  transform: translateY(-2px);
   color: #fff;
 }
 
@@ -1330,7 +1347,7 @@ button {
   
   /* Contact section layout stacking */
   .contact {
-    padding: 3rem 1rem;
+    padding: 3rem 1rem 5rem; /* extra bottom padding on mobile */
   }
   .contact__inner {
     grid-template-columns: 1fr;
