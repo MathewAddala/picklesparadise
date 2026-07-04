@@ -112,19 +112,32 @@ function createCard(product: Product, index: number): HTMLElement {
   const halaalBadge = product.halaal
     ? `<span class="catalog__card-halaal">☪ Halaal</span>`
     : '';
+
+  const halaalTag = product.halaal
+    ? `<span class="catalog__card-tag halaal-tag">☪ Halaal</span>`
+    : '';
   
   card.innerHTML = `
     <div class="catalog__card-image">
       ${imageContent}
       <span class="catalog__card-badge">${product.weight}</span>
       ${halaalBadge}
+      <!-- Mobile Swiggy-style overlapping action button -->
+      <a href="#contact" class="catalog__card-cta catalog__card-cta--mobile" data-product="${product.id}">ADD</a>
     </div>
     <div class="catalog__card-body">
+      <div class="catalog__card-tags">
+        <span class="nonveg-indicator" title="Non-Veg"></span>
+        ${halaalTag}
+      </div>
       <h3 class="catalog__card-name">${product.name}</h3>
       <p class="catalog__card-desc">${product.description}</p>
       <div class="catalog__card-footer">
-        <span class="catalog__card-price">${product.price}</span>
-        <a href="#contact" class="catalog__card-cta" data-product="${product.id}">Order Now</a>
+        <div class="catalog__card-price-group">
+          <span class="catalog__card-price">${product.price}</span>
+          <span class="catalog__card-weight">/ ${product.weight}</span>
+        </div>
+        <a href="#contact" class="catalog__card-cta catalog__card-cta--desktop" data-product="${product.id}">Order Now</a>
       </div>
     </div>
   `;
