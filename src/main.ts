@@ -11,6 +11,7 @@ import { initCatalog } from './catalog';
 import { initOutro } from './outro';
 import { initContact } from './contact';
 import { initReviews } from './reviews';
+import { initCart } from './cart';
 
 /** Navbar scroll styling + mobile toggle */
 function initNavbar(): void {
@@ -64,6 +65,7 @@ function init(): void {
   initSmoothScroll();
   initHero();
   initCatalog();
+  initCart();
   initOutro();
   initReviews();
   initContact();

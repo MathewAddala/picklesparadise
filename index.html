@@ -328,18 +328,10 @@
               <input type="tel" id="contact-phone" name="phone" placeholder="+91 XXXXX XXXXX" required />
             </div>
             <div class="contact__field">
-              <label for="contact-product">Interested In</label>
-              <select id="contact-product" name="product">
-                <option value="">Select a pickle...</option>
-                <option value="prawns">Prawns Pickle</option>
-                <option value="chicken-boneless">Chicken Boneless Pickle</option>
-                <option value="chicken-bone">Chicken Bone Pickle (Halaal)</option>
-                <option value="naatu-kodi">Naatu Kodi Pickle</option>
-                <option value="mutton">Mutton Pickle (Halaal)</option>
-                <option value="fish">Fish Pickle</option>
-                <option value="kormeenu">Kormeenu Boneless Pickle</option>
-                <option value="other">Other / General Inquiry</option>
-              </select>
+              <label>Your Order Summary</label>
+              <div id="cart-summary" class="cart-summary">
+                <!-- Dynamically populated by cart.ts -->
+              </div>
             </div>
             <div class="contact__field">
               <label for="contact-message">Message</label>
@@ -360,6 +352,18 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== FLOATING CART BAR ===== -->
+    <div id="cart-floating-bar" class="cart-floating-bar">
+      <div class="cart-floating-bar__info">
+        <span id="cart-floating-count" class="cart-floating-bar__count">0 Items</span>
+        <span id="cart-floating-total" class="cart-floating-bar__total">₹0</span>
+      </div>
+      <a href="#contact" id="cart-floating-action" class="cart-floating-bar__action">
+        View Order
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; display: inline-block; vertical-align: middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">

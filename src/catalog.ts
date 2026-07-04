@@ -6,7 +6,7 @@
  * click routing to the contact form with product pre-fill.
  */
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   description: string;
@@ -17,7 +17,7 @@ interface Product {
   image?: string; // optional — will use placeholder if absent
 }
 
-const PRODUCTS: Product[] = [
+export const PRODUCTS: Product[] = [
   {
     id: 'prawns',
     name: 'Prawns Pickle',
@@ -129,8 +129,8 @@ function createCard(product: Product, index: number): HTMLElement {
       ${imageContent}
       <span class="catalog__card-badge">${product.weight}</span>
       ${halaalBadge}
-      <!-- Mobile Swiggy-style overlapping action button -->
-      <a href="#contact" class="catalog__card-cta catalog__card-cta--mobile" data-product="${product.id}">ADD</a>
+      <!-- Mobile Swiggy-style overlapping action wrapper -->
+      <div class="catalog__action-wrapper catalog__action-wrapper--mobile" data-product-id="${product.id}"></div>
     </div>
     <div class="catalog__card-body">
       ${halaalTag ? `<div class="catalog__card-tags">${halaalTag}</div>` : ''}
@@ -144,7 +144,8 @@ function createCard(product: Product, index: number): HTMLElement {
           <span class="catalog__card-price">${product.price}</span>
           <span class="catalog__card-weight">/ ${product.weight}</span>
         </div>
-        <a href="#contact" class="catalog__card-cta catalog__card-cta--desktop" data-product="${product.id}">Order Now</a>
+        <!-- Desktop action wrapper -->
+        <div class="catalog__action-wrapper catalog__action-wrapper--desktop" data-product-id="${product.id}"></div>
       </div>
     </div>
   `;
@@ -195,29 +196,6 @@ function setupTabs(): void {
   });
 }
 
-/** Handle CTA clicks — scroll to contact and pre-fill product */
-function setupCtaLinks(): void {
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (target.classList.contains('catalog__card-cta')) {
-      e.preventDefault();
-      const productId = target.dataset.product || '';
-      
-      // Find the product select in contact form and pre-select
-      const select = document.getElementById('contact-product') as HTMLSelectElement | null;
-      if (select) {
-        select.value = productId;
-      }
-      
-      // Smooth scroll to contact
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  });
-}
-
 /** Reveal catalog header on scroll */
 function setupHeaderReveal(): void {
   const header = document.querySelector('.catalog__header');
@@ -252,6 +230,5 @@ export function initCatalog(): void {
   // Setup interactions
   setupCardReveal();
   setupTabs();
-  setupCtaLinks();
   setupHeaderReveal();
 }
