@@ -24,9 +24,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pickles Paradise | Authentic Andhra Pickles, Crafted with Tradition",
-  description: "Experience the rich taste of homemade traditional Andhra pickles made with premium ingredients. Shop Chicken, Mutton, Prawn, Mango, Lemon, and Garlic pickles today!",
-  keywords: "andhra pickles, traditional pickles, avakaya, chicken pickle, mutton pickle, prawn pickle, homemade pickle, pickles paradise",
+  title: "Pickles Paradise | Premium Andhra Non-Veg Pickles",
+  description: "Experience the rich, fiery taste of premium homemade Andhra non-veg pickles. Handcrafted chicken, mutton, and prawns pickles prepared with local spices.",
+  keywords: "andhra pickles, non-veg pickles, chicken pickle, mutton pickle, prawn pickle, homemade pickle, pickles paradise, spice",
 };
 
 export default function RootLayout({

@@ -17,13 +17,13 @@ export interface CartItem {
   id: string; // product.id + '-' + weight
   product: Product;
   quantity: number;
-  weight: 250 | 500 | 1000;
+  weight: 500 | 1000;
 }
 
 export default function Home() {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const addToCart = (product: Product, weight: 250 | 500 | 1000) => {
+  const addToCart = (product: Product, weight: 500 | 1000) => {
     const cartItemId = `${product.id}-${weight}`;
     setCart((prev) => {
       const existing = prev.find((item) => item.id === cartItemId);
@@ -36,7 +36,7 @@ export default function Home() {
     });
   };
 
-  const updateQuantity = (product: Product, weight: 250 | 500 | 1000, delta: number) => {
+  const updateQuantity = (product: Product, weight: 500 | 1000, delta: number) => {
     const cartItemId = `${product.id}-${weight}`;
     setCart((prev) => {
       const existing = prev.find((item) => item.id === cartItemId);
@@ -54,9 +54,8 @@ export default function Home() {
   const cartItemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const cartTotal = cart.reduce((acc, item) => {
     const getMultiplier = (w: number) => {
-      if (w === 500) return 1.8;
-      if (w === 1000) return 3.4;
-      return 1;
+      if (w === 1000) return 1.9;
+      return 1.0;
     };
     const unitPrice = Math.round(item.product.price * getMultiplier(item.weight));
     return acc + unitPrice * item.quantity;

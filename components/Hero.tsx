@@ -32,13 +32,13 @@ export default function Hero() {
           className="max-w-xl mx-auto md:ml-0 md:mr-auto space-y-6 pointer-events-auto bg-white/75 backdrop-blur-md border border-white/40 p-6 sm:p-10 rounded-3xl shadow-xl flex flex-col items-center md:items-start text-center md:text-left"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-terracotta bg-terracotta/5 border border-terracotta/10 px-3 py-1.5 rounded-full inline-block animate-pulse">
-            Authentic Andhra Flavors
+            Andhra Non-Veg Pickles
           </span>
           <h1 className="font-serif text-[36px] sm:text-[42px] md:text-[52px] xl:text-[64px] 2xl:text-[72px] font-extrabold text-[#3E2B1F] tracking-tight leading-tight md:leading-[1.1]">
             Pickles Paradise
           </h1>
           <p className="font-sans text-[15px] md:text-[16px] lg:text-[18px] text-[#6E5A4B] leading-relaxed">
-            Experience the rich, fiery taste of homemade traditional Andhra pickles made with premium ingredients and time-honored recipes.
+            Experience the rich, fiery taste of premium homemade Andhra non-veg pickles. Crafted using farm-fresh chicken, mutton, coastal prawns, and time-honored recipes.
           </p>
  
           {/* Action Buttons */}

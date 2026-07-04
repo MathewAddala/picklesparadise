@@ -20,18 +20,17 @@ interface BuyNowModalProps {
 }
 
 export default function BuyNowModal({ product, onClose }: BuyNowModalProps) {
-  const [weight, setWeight] = useState<250 | 500 | 1000>(250);
+  const [weight, setWeight] = useState<500 | 1000>(500);
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
 
   if (!product) return null;
 
-  // Calculate pricing factor: 250g is base price, 500g is 1.8x, 1kg is 3.4x (discounts for bulk)
+  // Calculate pricing factor: 500g is base price, 1kg is 1.9x (discounts for bulk)
   const getMultiplier = (w: number) => {
-    if (w === 500) return 1.8;
-    if (w === 1000) return 3.4;
-    return 1;
+    if (w === 1000) return 1.9;
+    return 1.0;
   };
 
   const unitPrice = Math.round(product.price * getMultiplier(weight));
@@ -40,7 +39,7 @@ export default function BuyNowModal({ product, onClose }: BuyNowModalProps) {
   const handleOrderSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const phoneNumber = '919876543210'; // Traditional Andhra store mock WhatsApp number
+    const phoneNumber = '918401134904'; // Traditional Andhra store WhatsApp number
     const message = `Hello Pickles Paradise! 🌶️✨\n\nI would like to order:\n*Product*: ${product.name}\n*Quantity*: ${quantity} x ${weight >= 1000 ? '1 kg' : `${weight}g`}\n*Total Price*: ₹${totalPrice}\n\n*Customer Name*: ${name}\n*Delivery Address*: ${address}\n\nThank you!`;
     
     const encodedMessage = encodeURIComponent(message);
@@ -107,11 +106,11 @@ export default function BuyNowModal({ product, onClose }: BuyNowModalProps) {
                 Select Package Weight
               </label>
               <div className="grid grid-cols-3 gap-2">
-                {[250, 500, 1000].map((w) => (
+                {[500, 1000].map((w) => (
                   <button
                     key={w}
                     type="button"
-                    onClick={() => setWeight(w as 250 | 500 | 1000)}
+                    onClick={() => setWeight(w as 500 | 1000)}
                     className={`py-2 px-3 text-center rounded-xl text-sm font-medium border-2 transition-all cursor-pointer ${
                       weight === w
                         ? 'border-terracotta bg-terracotta/5 text-terracotta font-semibold'

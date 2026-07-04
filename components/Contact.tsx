@@ -8,7 +8,7 @@ import type { Product } from './BuyNowModal';
 
 interface ContactProps {
   cart: CartItem[];
-  updateQuantity: (product: Product, weight: 250 | 500 | 1000, delta: number) => void;
+  updateQuantity: (product: Product, weight: 500 | 1000, delta: number) => void;
 }
 
 export default function Contact({ cart, updateQuantity }: ContactProps) {
@@ -21,9 +21,8 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
 
   const cartTotal = cart.reduce((acc, item) => {
     const getMultiplier = (w: number) => {
-      if (w === 500) return 1.8;
-      if (w === 1000) return 3.4;
-      return 1;
+      if (w === 1000) return 1.9;
+      return 1.0;
     };
     const unitPrice = Math.round(item.product.price * getMultiplier(item.weight));
     return acc + unitPrice * item.quantity;
@@ -35,9 +34,8 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
       // WhatsApp Order Flow
       const orderItemsText = cart.map(item => {
         const getMultiplier = (w: number) => {
-          if (w === 500) return 1.8;
-          if (w === 1000) return 3.4;
-          return 1;
+          if (w === 1000) return 1.9;
+          return 1.0;
         };
         const unitPrice = Math.round(item.product.price * getMultiplier(item.weight));
         const totalItemPrice = unitPrice * item.quantity;
@@ -57,7 +55,7 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
         `*TOTAL AMOUNT:* ₹${cartTotal}\n\n` +
         `Please confirm my order and share payment details. Thank you!`;
 
-      const whatsAppNumber = '919876543210';
+      const whatsAppNumber = '918401134904';
       window.open(`https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(messageText)}`, '_blank');
     } else {
       // Enquiry Flow
@@ -121,9 +119,8 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
                   <div className="divide-y divide-beige/30 space-y-3 pb-2">
                     {cart.map((item) => {
                       const getMultiplier = (w: number) => {
-                        if (w === 500) return 1.8;
-                        if (w === 1000) return 3.4;
-                        return 1;
+                        if (w === 1000) return 1.9;
+                        return 1.0;
                       };
                       const unitPrice = Math.round(item.product.price * getMultiplier(item.weight));
                       const totalItemPrice = unitPrice * item.quantity;

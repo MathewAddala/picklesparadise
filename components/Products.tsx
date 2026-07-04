@@ -7,67 +7,35 @@ import type { CartItem } from '@/app/page';
 
 const PRODUCTS: Product[] = [
   {
-    id: 'chicken-boneless',
-    name: 'Boneless Chicken Pickle (Halaal)',
-    price: 299,
-    image: '/chickenboneless.jpeg',
-    description: 'Tender chunks of boneless farm-fresh chicken marinated in premium ground spices, ginger-garlic paste, and sesame oil. Prepared in absolute traditional Andhra style.',
-    category: 'Non-Veg',
-  },
-  {
-    id: 'chicken-bone',
-    name: 'Chicken Pickle with Bone (Halaal)',
-    price: 269,
+    id: 'chicken-pickle',
+    name: 'Andhra Chicken Pickle (Halaal)',
+    price: 550,
     image: '/chickenbonepickle.jpeg',
-    description: 'Traditional bone-in chicken pickle infused with authentic spice mixes. Super flavorful and rich in traditional taste.',
-    category: 'Non-Veg',
-  },
-  {
-    id: 'naatu-kodi',
-    name: 'Naatu Kodi Country Chicken Pickle',
-    price: 349,
-    image: '/natukodipickle.jpeg',
-    description: 'Rustic Andhra country chicken pickle featuring intense native heat levels and premium spices. Crafted using heritage recipes.',
+    description: 'Tender farm-fresh chicken pieces slow-cooked in a rich, fiery Andhra masala blend with authentic home-ground spices and premium oil.',
     category: 'Non-Veg',
   },
   {
     id: 'mutton-pickle',
     name: 'Royal Mutton Pickle (Halaal)',
-    price: 399,
+    price: 800,
     image: '/muttonpickleitem.jpeg',
-    description: 'Succulent boneless mutton slow-cooked with heritage spices, mustard seed powder, and cold-pressed oil.',
+    description: 'Succulent boneless mutton slow-cooked to perfection with heritage spices, mustard seed powder, and cold-pressed oil.',
     category: 'Non-Veg',
   },
   {
     id: 'prawn-pickle',
     name: 'Tangy Prawns Pickle',
-    price: 349,
+    price: 650,
     image: '/prawnsitem.jpeg',
-    description: 'Coastal-fresh prawns fried crispy and marinated in a rich, tangy spice mix with fresh curry leaves and lemon juice.',
-    category: 'Non-Veg',
-  },
-  {
-    id: 'fish-pickle',
-    name: 'Premium Fish Pickle',
-    price: 299,
-    image: '/fishpickleitem.jpeg',
-    description: 'Fresh boneless fish cubes marinated in a traditional Andhra pickle masala, giving a perfect aromatic spice blend.',
-    category: 'Non-Veg',
-  },
-  {
-    id: 'kormeenu-pickle',
-    name: 'Kormeenu Boneless Fish Pickle',
-    price: 449,
-    image: '/kormeenupickle.jpeg',
-    description: 'Elite specialty pickle made from premium boneless Murrel (snakehead fish) prepared with grandmother\'s traditional recipe.',
+    description: 'Succulent coastal prawns fried crispy and marinated in a rich, tangy Andhra spice mix with fresh curry leaves and lemon juice.',
     category: 'Non-Veg',
   },
 ];
 
 interface ProductsProps {
   cart: CartItem[];
-  addToCart: (product: Product, weight: 250 | 500 | 1000) => void;
-  updateQuantity: (product: Product, weight: 250 | 500 | 1000, delta: number) => void;
+  addToCart: (product: Product, weight: 500 | 1000) => void;
+  updateQuantity: (product: Product, weight: 500 | 1000, delta: number) => void;
 }
 
 export default function Products({ cart, addToCart, updateQuantity }: ProductsProps) {
