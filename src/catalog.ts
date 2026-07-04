@@ -26,6 +26,7 @@ const PRODUCTS: Product[] = [
     weight: '250g',
     price: '₹350',
     halaal: false,
+    image: '/prawnsitem.jpeg',
   },
   {
     id: 'chicken-boneless',
