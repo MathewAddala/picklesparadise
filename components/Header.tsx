@@ -77,7 +77,7 @@ export default function Header() {
         <div className="w-full h-full mx-auto px-4 md:px-10 flex items-center justify-between">
           {/* Logo */}
           <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="flex items-center focus:outline-none">
-            <div className="w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] lg:w-[90px] lg:h-[90px] rounded-full overflow-hidden bg-white p-2 shadow-[0_8px_30px_rgba(0,0,0,0.15)] flex items-center justify-center transition-transform duration-[350ms] hover:scale-[1.05] relative -bottom-[2px] lg:-bottom-[4px]">
+            <div className="w-[50px] h-[50px] sm:w-[55px] sm:h-[55px] lg:w-[68px] lg:h-[68px] rounded-full overflow-hidden bg-white p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.12)] flex items-center justify-center transition-transform duration-[350ms] hover:scale-[1.05] relative">
               <Image src="/logo.png" alt="Pickles Paradise Logo" width={90} height={90} priority quality={100} className="w-full h-full object-contain" />
             </div>
           </a>

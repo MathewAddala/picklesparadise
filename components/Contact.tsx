@@ -291,8 +291,8 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
                   </div>
                   <div>
                     <h4 className="text-[10px] font-semibold text-text-light uppercase tracking-wider">Phone</h4>
-                    <a href="tel:+919876543210" className="text-sm font-bold text-text-dark hover:text-terracotta transition-colors">
-                      +91 98765 43210
+                    <a href="tel:+918401134904" className="text-sm font-bold text-text-dark hover:text-terracotta transition-colors">
+                      +91 84011 34904
                     </a>
                   </div>
                 </div>
