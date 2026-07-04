@@ -71,18 +71,18 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-12 md:py-16 lg:py-24 bg-transparent relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-10 md:py-14 bg-transparent relative">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 bg-white/75 backdrop-blur-md border border-beige/45 rounded-3xl p-6 sm:p-8 shadow-sm">
-          <span className="text-terracotta font-semibold text-sm tracking-wider uppercase">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 bg-white/75 backdrop-blur-md border border-beige/45 rounded-3xl p-5 sm:p-6 shadow-sm">
+          <span className="text-terracotta font-semibold text-xs tracking-wider uppercase">
             Connect
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-text-dark">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-dark">
             {cart.length > 0 ? "Review Your Order" : "We'd Love to Hear From You"}
           </h2>
-          <p className="text-text-light text-sm sm:text-base leading-relaxed">
+          <p className="text-text-light text-xs sm:text-sm leading-relaxed">
             {cart.length > 0 
               ? "Review the items in your cart, enter your delivery details, and place your order directly via WhatsApp for instant processing and cash/UPI delivery."
               : "Have questions about bulk orders, custom spice levels, or delivery? Reach out to us or drop us a message directly via WhatsApp!"
@@ -91,7 +91,7 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
         </div>
 
         {/* Contact Info & Form Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           
           {/* Left: Contact Form / Checkout */}
           <motion.div
@@ -99,10 +99,10 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/85 backdrop-blur-md border border-beige/45 p-6 sm:p-8 rounded-2xl text-left shadow-sm flex flex-col justify-between"
+            className="bg-white/85 backdrop-blur-md border border-beige/45 p-4 sm:p-6 rounded-2xl text-left shadow-sm flex flex-col"
           >
             <div>
-              <h3 className="font-serif text-xl font-bold text-text-dark mb-6 flex items-center gap-2">
+              <h3 className="font-serif text-lg font-bold text-text-dark mb-4 flex items-center gap-2">
                 {cart.length > 0 ? (
                   <>
                     <ShoppingBag className="w-5 h-5 text-terracotta" />
@@ -276,10 +276,10 @@ export default function Contact({ cart, updateQuantity }: ContactProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white/85 backdrop-blur-md border border-beige/45 p-6 sm:p-8 rounded-2xl text-left shadow-sm flex flex-col justify-between h-full"
+            className="bg-white/85 backdrop-blur-md border border-beige/45 p-4 sm:p-6 rounded-2xl text-left shadow-sm flex flex-col"
           >
-            <div className="space-y-6">
-              <h3 className="font-serif text-xl font-bold text-text-dark border-b border-beige/45 pb-3">
+            <div className="space-y-4">
+              <h3 className="font-serif text-lg font-bold text-text-dark border-b border-beige/45 pb-2">
                 Direct Contact Details
               </h3>
 
