@@ -1833,20 +1833,7 @@ button {
     height: 180px;
   }
   
-  /* Action wrappers mobile toggle */
-  .catalog__action-wrapper--mobile {
-    display: block !important;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    pointer-events: none;
-    z-index: 10;
-  }
-  .catalog__action-wrapper--desktop {
-    display: none !important;
-  }
+  /* Action wrappers overrides moved to bottom to fix CSS order precedence */
 
   /* Footer */
   .footer {
@@ -2118,6 +2105,23 @@ button {
 .cart-summary__total-price {
   color: var(--color-text);
   font-size: 1.05rem;
+}
+
+/* Mobile overrides for cart system to resolve CSS precedence issue */
+@media (max-width: 768px) {
+  .catalog__action-wrapper--mobile {
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .catalog__action-wrapper--desktop {
+    display: none !important;
+  }
 }
 
 
