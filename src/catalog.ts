@@ -147,7 +147,7 @@ function createCard(product: Product, index: number): HTMLElement {
 
 /** Setup IntersectionObserver for staggered reveal */
 function setupCardReveal(): void {
-  const cards = document.querySelectorAll('.catalog__card.reveal');
+  const elements = document.querySelectorAll('.reveal');
   
   const observer = new IntersectionObserver(
     (entries) => {
@@ -158,10 +158,10 @@ function setupCardReveal(): void {
         }
       });
     },
-    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
   );
   
-  cards.forEach((card) => observer.observe(card));
+  elements.forEach((el) => observer.observe(el));
 }
 
 /** Handle tab switching */

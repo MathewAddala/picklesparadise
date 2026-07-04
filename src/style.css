@@ -717,27 +717,22 @@ button {
 .outro__overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(12,10,8,0.2) 0%, rgba(12,10,8,0.65) 100%);
+  /* Darker on the left to make floating text readable; subtle dark vignette on other sides */
+  background: linear-gradient(90deg, rgba(12, 10, 8, 0.95) 0%, rgba(12, 10, 8, 0.5) 45%, rgba(12, 10, 8, 0.1) 70%, rgba(12, 10, 8, 0.4) 100%),
+              radial-gradient(circle at center, transparent 30%, rgba(12, 10, 8, 0.6) 100%);
   z-index: 2;
 }
 .outro__content {
   position: absolute;
   z-index: 3;
-  left: 6%;
-  bottom: 10%; /* Keep clear of the centered plate/jar animation */
+  left: 8%;
+  bottom: 14%; /* Elevated slightly for classic editorial feel */
   text-align: left;
-  max-width: 440px;
-  background: rgba(12, 10, 8, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 2.2rem;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 460px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .outro__content--hidden {
   opacity: 0;
@@ -905,6 +900,138 @@ button {
 }
 .outro__story-feat-icon {
   font-size: 1rem;
+}
+
+/* ============================================================
+   REVIEWS — Testimonials Section
+   ============================================================ */
+.reviews {
+  position: relative;
+  z-index: 3;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background: var(--color-bg-dark); /* dark foodie theme */
+  border-top: 1px solid var(--color-border);
+}
+.reviews__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.reviews__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.reviews__label {
+  font-family: var(--font-accent);
+  font-size: 0.88rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+.reviews__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 850;
+  color: var(--color-text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.reviews__stars-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+}
+.reviews__stars-rating {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffb800;
+  background: rgba(255, 184, 0, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+.reviews__stars-count {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.reviews__title-line {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.reviews__card {
+  background: rgba(20, 18, 16, 0.45);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-med);
+  position: relative;
+}
+.reviews__card:hover {
+  transform: translateY(-8px);
+  background: rgba(20, 18, 16, 0.65);
+  border-color: rgba(255, 184, 0, 0.35);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 184, 0, 0.05);
+}
+.reviews__card-rating {
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.1em;
+}
+.reviews__card-text {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1.75rem;
+  flex-grow: 1;
+  font-style: italic;
+}
+.reviews__card-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.25rem;
+}
+.reviews__author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  color: var(--color-bg-dark);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(255, 184, 0, 0.2);
+}
+.reviews__author-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 750;
+  color: var(--color-text);
+}
+.reviews__author-meta {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
 }
 
 /* ============================================================
@@ -1513,6 +1640,10 @@ button {
     align-items: center;
     text-align: center;
     border-radius: 20px;
+    background: rgba(12, 10, 8, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
   }
   .outro__content--hidden {
@@ -1550,6 +1681,38 @@ button {
   .outro__story-feat {
     font-size: 0.76rem;
   }
+
+  /* Reviews Section Swipeable Layout on Mobile */
+  .reviews {
+    padding: 3rem 0; /* remove side padding so list can touch edges */
+  }
+  .reviews__header {
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .reviews__grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 1rem 1.5rem; /* bottom padding for scrollbar/shadows */
+    gap: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* hide scrollbar for firefox */
+  }
+  .reviews__grid::-webkit-scrollbar {
+    display: none; /* hide scrollbar for chrome/safari */
+  }
+  .reviews__card {
+    flex: 0 0 85%; /* show 85% of card so next one is partially visible */
+    scroll-snap-align: start;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  .reviews__card-text {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
   
   /* Contact section layout stacking */
   .contact {
