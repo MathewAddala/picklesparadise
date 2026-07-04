@@ -120,7 +120,7 @@ export default function Testimonials() {
           onTouchEnd={() => {
             setTimeout(() => setIsInteracting(false), 1500);
           }}
-          className="flex overflow-x-auto gap-6 pb-6 scrollbar-none w-full snap-x snap-mandatory scroll-smooth"
+          className="flex overflow-x-auto gap-4 pb-4 hide-scrollbar w-full snap-x snap-mandatory scroll-smooth"
         >
           {REVIEWS.map((review, index) => (
             <motion.div
@@ -129,35 +129,35 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="min-w-[260px] max-w-[260px] w-[260px] shrink-0 snap-center bg-white/85 backdrop-blur-md p-5 rounded-xl shadow-sm border border-beige/35 flex flex-col justify-between relative group hover:shadow-md transition-shadow duration-300"
+              className="min-w-[210px] max-w-[210px] w-[210px] shrink-0 snap-center bg-white/85 backdrop-blur-md p-4 rounded-xl shadow-sm border border-beige/35 flex flex-col justify-between relative group hover:shadow-md transition-shadow duration-300"
             >
               {/* Quote Mark Decoration */}
-              <Quote className="absolute top-4 right-4 w-6 h-6 text-beige/40 -z-0" />
+              <Quote className="absolute top-3.5 right-3.5 w-5 h-5 text-beige/40 -z-0" />
               
-              <div className="space-y-3 relative z-10 text-left">
+              <div className="space-y-2.5 relative z-10 text-left">
                 {/* Stars */}
                 <div className="flex gap-0.5">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                    <Star key={i} className="w-3 h-3 text-amber-500 fill-amber-500" />
                   ))}
                 </div>
                 
-                <p className="text-xs text-text-light leading-relaxed italic">
+                <p className="text-[10.5px] text-text-light leading-relaxed italic">
                   &ldquo;{review.comment}&rdquo;
                 </p>
               </div>
 
               {/* Customer Author Info */}
-              <div className="pt-4 border-t border-beige/40 mt-4 flex items-center justify-between text-left">
+              <div className="pt-3 border-t border-beige/40 mt-3 flex items-center justify-between text-left">
                 <div>
-                  <h4 className="font-serif font-bold text-text-dark text-xs sm:text-sm">
+                  <h4 className="font-serif font-bold text-text-dark text-[11px]">
                     {review.name}
                   </h4>
-                  <p className="text-[10px] text-terracotta">
+                  <p className="text-[9px] text-terracotta">
                     {review.location}
                   </p>
                 </div>
-                <span className="text-[10px] text-text-light/60 font-semibold uppercase tracking-wider bg-cream px-2 py-0.5 rounded">
+                <span className="text-[9px] text-text-light/60 font-semibold uppercase tracking-wider bg-cream px-1.5 py-0.5 rounded">
                   Verified
                 </span>
               </div>
