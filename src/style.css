@@ -703,6 +703,13 @@ button {
   object-fit: cover;
   z-index: 1;
 }
+/* Scroll alignment offsets to prevent sticky header cutoff */
+.catalog,
+.outro,
+.contact {
+  scroll-margin-top: 64px; /* match navbar height */
+}
+
 .outro__overlay {
   position: absolute;
   inset: 0;
@@ -714,6 +721,11 @@ button {
   z-index: 3;
   text-align: center;
   padding: 0 var(--section-pad-x);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.outro__content--hidden {
+  opacity: 0;
+  transform: translateY(-40px);
   pointer-events: none;
 }
 .outro__label {
@@ -740,6 +752,142 @@ button {
   font-weight: 300;
   letter-spacing: 0.05em;
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.outro__discover-btn {
+  margin-top: 2rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff6b00, #ff8c00);
+  border: none;
+  color: #fff;
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.outro__discover-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+  background: linear-gradient(135deg, #ff8c00, #ffa500);
+}
+
+/* In-place transitioning glass story card */
+.outro__story-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%) scale(0.95);
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+  width: 90%;
+  max-width: 650px;
+  background: rgba(18, 14, 11, 0.88);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 16px;
+  padding: 2.2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.outro__story-panel--active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.outro__close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.outro__close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-text);
+  transform: scale(1.05);
+}
+.outro__story-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.outro__story-badge {
+  font-family: var(--font-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.outro__story-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.outro__story-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--color-primary);
+  margin: 0.75rem auto 1.25rem;
+  border-radius: 2px;
+}
+.outro__story-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.outro__story-paragraph {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+.outro__story-paragraph strong {
+  color: var(--color-primary-light);
+}
+.outro__story-features {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+  margin-top: 0.5rem;
+}
+.outro__story-feat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.outro__story-feat-icon {
+  font-size: 1rem;
 }
 
 /* ============================================================
@@ -1335,14 +1483,40 @@ button {
   
   /* Outro video height adjusted on mobile */
   .outro {
-    height: 48vh; /* condensed height on mobile */
+    height: 100vh; /* full height on mobile when active or static */
+    min-height: 580px;
   }
   .outro__title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   .outro__subtitle {
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     margin-top: 0.5rem;
+  }
+  .outro__story-panel {
+    padding: 1.5rem 1.25rem;
+    width: 92%;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+  .outro__story-title {
+    font-size: 1.5rem;
+  }
+  .outro__story-text-container {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .outro__story-paragraph {
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+  .outro__story-features {
+    gap: 0.8rem;
+    padding-top: 1rem;
+    margin-top: 0.3rem;
+  }
+  .outro__story-feat {
+    font-size: 0.76rem;
   }
   
   /* Contact section layout stacking */

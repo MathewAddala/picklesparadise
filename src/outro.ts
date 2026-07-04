@@ -72,6 +72,9 @@ function setupContentReveal(): void {
 export function initOutro(): void {
   const video = document.getElementById('outro-video') as HTMLVideoElement;
   const content = document.querySelector('.outro__content') as HTMLElement;
+  const storyPanel = document.querySelector('.outro__story-panel') as HTMLElement;
+  const discoverBtn = document.getElementById('discover-story-btn') as HTMLButtonElement;
+  const closeBtn = document.getElementById('close-story-btn') as HTMLButtonElement;
   
   if (!video || !content) return;
   
@@ -84,4 +87,18 @@ export function initOutro(): void {
   setupPreloadObserver();
   setupPlayObserver();
   setupContentReveal();
+
+  if (discoverBtn && storyPanel) {
+    discoverBtn.addEventListener('click', () => {
+      content.classList.add('outro__content--hidden');
+      storyPanel.classList.add('outro__story-panel--active');
+    });
+  }
+
+  if (closeBtn && storyPanel) {
+    closeBtn.addEventListener('click', () => {
+      content.classList.remove('outro__content--hidden');
+      storyPanel.classList.remove('outro__story-panel--active');
+    });
+  }
 }
