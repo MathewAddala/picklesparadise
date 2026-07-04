@@ -23,7 +23,7 @@
   --color-whatsapp: #25d366;
 
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-display: 'Outfit', 'Inter', -apple-system, sans-serif;
   --font-body: 'Inter', -apple-system, sans-serif;
   --font-accent: 'Outfit', sans-serif;
 
@@ -133,8 +133,9 @@ button {
   gap: 0.5rem;
   color: var(--color-text);
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 800; /* extra-bold */
+  letter-spacing: -0.03em; /* tight, premium foodtech logo spacing */
 }
 .navbar__logo:hover { color: var(--color-text); }
 .navbar__logo-img {
@@ -297,9 +298,9 @@ button {
 .hero__title {
   font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
+  font-weight: 800; /* extra bold geometric sans-serif */
+  line-height: 0.95;
+  letter-spacing: -0.03em; /* tight, punchy foodie typography */
   color: var(--color-text);
   text-shadow: 0 4px 40px rgba(0,0,0,0.5);
 }
@@ -402,7 +403,8 @@ button {
 .catalog__title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 700;
+  font-weight: 800; /* extra bold */
+  letter-spacing: -0.02em; /* tight, punchy spacing */
   color: var(--color-text);
   text-shadow: 0 2px 15px rgba(0, 0, 0, 0.95), 0 4px 30px rgba(0, 0, 0, 0.9);
 }
@@ -539,8 +541,9 @@ button {
 }
 .catalog__card-name {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
   color: var(--color-text);
   margin-bottom: 0.4rem;
 }
@@ -739,9 +742,10 @@ button {
 .outro__title {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 700;
+  font-weight: 850; /* extra-bold */
   color: var(--color-text);
-  line-height: 1.1;
+  line-height: 1.05;
+  letter-spacing: -0.03em; /* tight, punchy spacing */
   text-shadow: 0 4px 30px rgba(0,0,0,0.6);
 }
 .outro__subtitle {
@@ -918,7 +922,8 @@ button {
 .contact__title {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 700;
+  font-weight: 800; /* extra-bold */
+  letter-spacing: -0.02em; /* tight, punchy spacing */
   color: var(--color-text);
 }
 .contact__title-line {
